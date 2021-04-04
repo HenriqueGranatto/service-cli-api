@@ -1,0 +1,14 @@
+[
+    {
+        "subdomain": "subdomain",
+        "data":
+        [
+            {
+                "url": "/",
+                "type": ["GET", "POST", "PUT", "DELETE"],
+                "authentication": true,
+                "subdomainControllerMethod": "SubdomainControllerMethod"
+            }
+        ]
+    }
+]

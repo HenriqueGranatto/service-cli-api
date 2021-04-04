@@ -1,0 +1,23 @@
+{
+  "license": "ISC",
+  "version": "1.0.0",
+  "main": "index.js",
+  "name": "service-cli-api",
+  "author": "Henrique Granatto",
+  "description": "A plugin for CLI service-cli.",
+  "homepage": "https://github.com/HenriqueGranatto/service-cli-api#readme",
+  "directories": {
+    "doc": "docs",
+    "commands": "commands",
+    "templates": "templates",
+    "extensions": "extensions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenriqueGranatto/service-cli-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HenriqueGranatto/service-cli-api/issues"
+  },
+  "dependencies": {}
+}
