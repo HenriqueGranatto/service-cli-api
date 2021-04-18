@@ -21,6 +21,7 @@ const command = {
         toolbox.print.info("###################################################")
         const controllers = await toolbox.readTemplate(toolbox, module)
         await toolbox.createController(toolbox, controllers)
+        await toolbox.createSubdomainController(toolbox, controllers)
 
         toolbox.print.info("\n")
         toolbox.print.success(`Módulo ${module.name} adicionado com sucesso!`)

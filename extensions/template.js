@@ -3,6 +3,7 @@ module.exports = (toolbox) =>
     toolbox.readTemplate = readTemplate
     toolbox.createModule = createModule
     toolbox.createController = createController
+    toolbox.createSubdomainController = createSubdomainController
 }
 
 const readTemplate = async (toolbox, module) =>
@@ -86,6 +87,45 @@ router.${route.toLowerCase()}("${routes.url}", ${authentication} (request, respo
             props: controllerProps,
             template: `routes/route.ejs`,
             target: `api/routes/${controller.subdomain.charAt(0).toUpperCase()}${controller.subdomain.slice(1)}.js`
+        })
+    })
+}
+
+const createSubdomainController = (toolbox, controllers) =>
+{
+    toolbox.print.info("- Adicionando Controllers")
+
+    controllers.map(async (controller) => {
+        const controllerProps = 
+        {
+            methods: "",
+            subdomain: `${controller.subdomain.charAt(0).toUpperCase()}${controller.subdomain.slice(1)}`
+        }
+
+        controller.data.map(methods => {
+            methods.type.map(method => {
+                controllerProps.methods +=
+`
+static ${method.subdomainControllerMethod}(request)
+{
+    let response = 
+    {
+        status: 200,
+        body: ${controllerProps.subdomain}.${method.subdomainControllerMethod}()
+    }
+
+    return response
+}
+`
+            })
+        })
+
+        toolbox.print.success(`Subdomínio: ${controller.subdomain}`)
+
+        await toolbox.template.generate({
+            props: controllerProps,
+            template: `domain/controller.ejs`,
+            target: `domain/${controllerProps.subdomain}/Controller.js`
         })
     })
 }
