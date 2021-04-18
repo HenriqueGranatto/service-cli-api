@@ -1,5 +1,6 @@
 const command = {
     name: 'template:api',
+    description: 'Gera um template de configuração para instalação do módulo'
     run: async toolbox => {
         toolbox.print.success("- Adicionando: api.json")
         await toolbox.template.generate({
