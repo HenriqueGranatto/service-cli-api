@@ -1,6 +1,6 @@
 const command = {
     name: 'add:api',
-    description: 'Adiciona uma api HTTP ao serviço (Express)'
+    description: 'Adiciona uma api HTTP ao serviço (Express)',
     run: async toolbox => {
       const module = await toolbox.validate(toolbox)
       

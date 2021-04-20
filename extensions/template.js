@@ -1,9 +1,12 @@
 module.exports = (toolbox) =>
 {
-    toolbox.readTemplate = readTemplate
-    toolbox.createModule = createModule
-    toolbox.createController = createController
-    toolbox.createSubdomainController = createSubdomainController
+    if(toolbox.parameters.command == 'add:api')
+    {
+        toolbox.readTemplate = readTemplate
+        toolbox.createModule = createModule
+        toolbox.createController = createController
+        toolbox.createSubdomainController = createSubdomainController
+    }
 }
 
 const readTemplate = async (toolbox, module) =>
