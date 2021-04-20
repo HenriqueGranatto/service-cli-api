@@ -30,19 +30,19 @@ const readTemplate = async (toolbox, module) =>
 
 const createModule = async (toolbox) =>
 {
-    toolbox.print.success("- Adicionando: kafka/app.js")
+    toolbox.print.success("- Adicionando: api/app.js")
     await toolbox.template.generate({
         template: 'app.js',
         target: `api/app.js`,
     })
 
-    toolbox.print.success("- Adicionando: kafka/server.js")
+    toolbox.print.success("- Adicionando: api/server.js")
     await toolbox.template.generate({
         template: 'server.js',
         target: `api/server.js`,
     })
 
-    toolbox.print.success("- Adicionando: kafka/server.js")
+    toolbox.print.success("- Adicionando: api/authentication.js")
     await toolbox.template.generate({
         template: 'middlewares/authentication.js',
         target: `api/middlewares/authentication.js`,
@@ -96,7 +96,7 @@ router.${route.toLowerCase()}("${routes.url}", ${authentication} (request, respo
 
 const createSubdomainController = (toolbox, controllers) =>
 {
-    toolbox.print.info("- Adicionando Controllers")
+    toolbox.print.info("- Adicionando Controller ao subdomínio")
 
     controllers.map(async (controller) => {
         const controllerProps = 
