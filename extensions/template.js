@@ -51,6 +51,7 @@ const createModule = async (toolbox) =>
     toolbox.print.success("- Adicionando: configurações do módulo no arquivo .env")
     let env = `# Configurações da API\n`
     env += `API_PORT=\n`
+    env += `\n`
     toolbox.filesystem.append('.env', env)
 
     toolbox.print.success("- Adicionando: módulo no arquivo service.js")
