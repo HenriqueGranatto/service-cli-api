@@ -108,16 +108,16 @@ const createSubdomainController = (toolbox, controllers) =>
         controller.data.map(method => {
                 controllerProps.methods +=
 `
-static ${method.subdomainControllerMethod}(request)
-{
-    let response = 
+    static ${method.subdomainControllerMethod}(request)
     {
-        status: 200,
-        body: ${controllerProps.subdomain}.${method.subdomainControllerMethod}()
-    }
+        let response = 
+        {
+            status: 200,
+            body: ${controllerProps.subdomain}.${method.subdomainControllerMethod}()
+        }
 
-    return response
-}
+        return response
+    }
 `
         })
 
