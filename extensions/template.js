@@ -105,8 +105,7 @@ const createSubdomainController = (toolbox, controllers) =>
             subdomain: `${controller.subdomain.charAt(0).toUpperCase()}${controller.subdomain.slice(1)}`
         }
 
-        controller.data.map(methods => {
-            methods.type.map(method => {
+        controller.data.map(method => {
                 controllerProps.methods +=
 `
 static ${method.subdomainControllerMethod}(request)
@@ -120,7 +119,6 @@ static ${method.subdomainControllerMethod}(request)
     return response
 }
 `
-            })
         })
 
         toolbox.print.success(`Subdomínio: ${controller.subdomain}`)
