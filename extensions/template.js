@@ -70,7 +70,7 @@ const createController = (toolbox, controllers) =>
 `
 router.${route.toLowerCase()}("${routes.url}", ${authentication} async (request, response) => {
     const requestData = {status: request.statusCode, body: request.body, params: request.params, metadata: request}
-    const responseData = Controller.${routes.subdomainControllerMethod}(requestData)
+    const responseData = await Controller.${routes.subdomainControllerMethod}(requestData)
     response.status(responseData.status).send(responseData.body)
 });
 
@@ -107,7 +107,7 @@ const createSubdomainController = (toolbox, controllers) =>
         let response = 
         {
             status: 200,
-            body: ${controllerProps.subdomain}.${method.subdomainControllerMethod}()
+            body: await ${controllerProps.subdomain}.${method.subdomainControllerMethod}()
         }
 
         return response
