@@ -36,12 +36,6 @@ const createModule = async (toolbox) =>
         target: `api/app.js`,
     })
 
-    toolbox.print.success("- Adicionando: api/server.js")
-    await toolbox.template.generate({
-        template: 'server.js',
-        target: `api/server.js`,
-    })
-
     toolbox.print.success("- Adicionando: api/authentication.js")
     await toolbox.template.generate({
         template: 'middlewares/authentication.js',
