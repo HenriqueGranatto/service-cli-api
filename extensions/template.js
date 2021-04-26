@@ -68,7 +68,7 @@ const createController = (toolbox, controllers) =>
             routes.type.map(route => {
                 controllerProps.subdomainControllerRoutes +=
 `
-router.${route.toLowerCase()}("${routes.url}", ${authentication} (request, response) => {
+router.${route.toLowerCase()}("${routes.url}", ${authentication} async (request, response) => {
     const requestData = {status: request.statusCode, body: request.body, params: request.params, metadata: request}
     const responseData = Controller.${routes.subdomainControllerMethod}(requestData)
     response.status(responseData.status).send(responseData.body)
@@ -102,7 +102,7 @@ const createSubdomainController = (toolbox, controllers) =>
         controller.data.map(method => {
                 controllerProps.methods +=
 `
-    static ${method.subdomainControllerMethod}(request)
+    static async ${method.subdomainControllerMethod}(request)
     {
         let response = 
         {
