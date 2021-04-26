@@ -1,9 +1,12 @@
+#!/usr/bin/env node
+
 /**
  * Module dependencies.
  */
 require('dotenv').config()
 const fs = require("fs")
 const path = require("path")
+const http = require("http")
 const express = require("express")
 
 /**
@@ -31,4 +34,12 @@ fs.readdir(path.join(__dirname, "routes"), (err, routes) => {
     });
 })
 
-module.exports = app
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app)
+
+/**
+ * Configure server port
+ */
+server.listen(process.env.API_PORT)
