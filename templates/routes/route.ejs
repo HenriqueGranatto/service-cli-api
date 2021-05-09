@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Controller = require('../../domain/<%- props.subdomain %>/Controller')
-const AuthenticationMiddleware = require('../middlewares/authentication')
+const SecurityMiddleware = require('../middlewares/security')
 
 <%- props.subdomainControllerRoutes %>
 

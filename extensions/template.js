@@ -38,8 +38,8 @@ const createModule = async (toolbox) =>
 
     toolbox.print.success("- Adicionando: api/authentication.js")
     await toolbox.template.generate({
-        template: 'middlewares/authentication.js',
-        target: `api/middlewares/authentication.js`,
+        template: 'middlewares/security.js',
+        target: `api/middlewares/security.js`,
     })
 
     toolbox.print.success("- Adicionando: configurações do módulo no arquivo .env")
@@ -63,15 +63,14 @@ const createController = (toolbox, controllers) =>
         }
 
         controller.data.map(routes => {
-            const authentication = (routes.authentication) ? "AuthenticationMiddleware, " : ""
+            const authentication = (routes.authentication) ? "SecurityMiddleware, " : ""
 
             routes.type.map(route => {
                 controllerProps.subdomainControllerRoutes +=
 `
 router.${route.toLowerCase()}("${routes.url}", ${authentication} async (request, response) => {
-    const requestData = {status: request.statusCode, body: request.body, params: request.params, metadata: request}
-    const responseData = await Controller.${routes.subdomainControllerMethod}(requestData)
-    response.status(responseData.status).send(responseData.body)
+    const result = await Controller.${routes.subdomainControllerMethod}(request)
+    response.status(result.status).send(result.body)
 });
 
 `
